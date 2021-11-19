@@ -1,5 +1,4 @@
 import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
 
 @Component({
   tag: 'my-component',
@@ -7,26 +6,14 @@ import { format } from '../../utils/utils';
   shadow: true,
 })
 export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
-
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
-
-  /**
-   * The last name
-   */
-  @Prop() last: string;
-
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
-  }
+  @Prop() color: string = 'red-500';
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    const { color } = this;
+    const style = {
+      [`text-2xl`]: true,
+      [`text-${color}`]: true,
+    };
+    return <div class={style}>tailwind</div>;
   }
 }
